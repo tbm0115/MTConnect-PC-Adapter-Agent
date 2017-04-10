@@ -33,12 +33,14 @@
       this.button1 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.taskIcon = new System.Windows.Forms.NotifyIcon(this.components);
+      this.linkCurrent = new System.Windows.Forms.LinkLabel();
+      this.linkProbe = new System.Windows.Forms.LinkLabel();
       this.SuspendLayout();
       // 
       // button1
       // 
       this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-      this.button1.Location = new System.Drawing.Point(68, 69);
+      this.button1.Location = new System.Drawing.Point(68, 43);
       this.button1.Margin = new System.Windows.Forms.Padding(4);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(153, 39);
@@ -50,7 +52,7 @@
       // button2
       // 
       this.button2.BackColor = System.Drawing.Color.Red;
-      this.button2.Location = new System.Drawing.Point(273, 69);
+      this.button2.Location = new System.Drawing.Point(273, 43);
       this.button2.Margin = new System.Windows.Forms.Padding(4);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(153, 39);
@@ -64,13 +66,38 @@
       this.taskIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("taskIcon.Icon")));
       this.taskIcon.Text = "MTConnect Adapter/Agent";
       this.taskIcon.Visible = true;
-      this.taskIcon.MouseDoubleClick += TaskIcon_MouseDoubleClick;
+      // 
+      // linkCurrent
+      // 
+      this.linkCurrent.AutoSize = true;
+      this.linkCurrent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.linkCurrent.Location = new System.Drawing.Point(115, 104);
+      this.linkCurrent.Name = "linkCurrent";
+      this.linkCurrent.Size = new System.Drawing.Size(266, 28);
+      this.linkCurrent.TabIndex = 2;
+      this.linkCurrent.TabStop = true;
+      this.linkCurrent.Text = "http://localhost:5000/current";
+      this.linkCurrent.LinkClicked += LinkCurrent_LinkClicked;
+      // 
+      // linkProbe
+      // 
+      this.linkProbe.AutoSize = true;
+      this.linkProbe.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.linkProbe.Location = new System.Drawing.Point(115, 143);
+      this.linkProbe.Name = "linkProbe";
+      this.linkProbe.Size = new System.Drawing.Size(257, 28);
+      this.linkProbe.TabIndex = 3;
+      this.linkProbe.TabStop = true;
+      this.linkProbe.Text = "http://localhost:5000/probe";
+      this.linkProbe.LinkClicked += LinkProbe_LinkClicked;
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(496, 180);
+      this.Controls.Add(this.linkProbe);
+      this.Controls.Add(this.linkCurrent);
       this.Controls.Add(this.button2);
       this.Controls.Add(this.button1);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -79,10 +106,21 @@
       this.Name = "Form1";
       this.Text = "MTConnect Core Agent";
       this.Load += new System.EventHandler(this.Form1_Load);
+      this.Resize += new System.EventHandler(this.Form1_Resize);
       this.ResumeLayout(false);
-      this.Resize += new System.EventHandler(Form1_Resize);
-      this.FormClosing += Form1_FormClosing;
+      this.PerformLayout();
+
         }
+
+    private void LinkProbe_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+    {
+      System.Diagnostics.Process.Start("http://localhost:5000/probe");
+    }
+
+    private void LinkCurrent_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+    {
+      System.Diagnostics.Process.Start("http://localhost:5000/current");
+    }
 
     private void Form1_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
     {
@@ -97,6 +135,7 @@
     
     private void Form1_Resize(object sender, System.EventArgs e)
     {
+      this.ShowInTaskbar = true;
       if (this.WindowState == System.Windows.Forms.FormWindowState.Minimized)
       {
         Hide();
@@ -114,6 +153,8 @@
     private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     public System.Windows.Forms.NotifyIcon taskIcon;
+    private System.Windows.Forms.LinkLabel linkCurrent;
+    private System.Windows.Forms.LinkLabel linkProbe;
   }
 }
 
