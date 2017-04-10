@@ -25,8 +25,10 @@ namespace MTConnectAgentCoreWindows
     public Form1()
     {
       InitializeComponent();
+      // Initialize Agent
       agent = new Agent();
       this.button2.Enabled = false;
+      // Initialize Timer
       aTimer = new System.Timers.Timer(50);
       aTimer.Elapsed += new ElapsedEventHandler(aTimer_Elapsed);
       myPC = new PC();
@@ -52,11 +54,15 @@ namespace MTConnectAgentCoreWindows
 
     private void aTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
+      // Iterate through each DataItem (set in Initialization)
       foreach (PCAdapter.Interfaces.IDataItem item in myPC.DataItems)
       {
+        // Refresh value
         item.GetValue();
         if (item.Item.Changed)
         {
+          // Check DataItem type (Condition, Sample, Event)
+          // Also check that the agent didn't have any issues 'storing' the value.
           switch (item.ValueType)
           {
             case PCAdapter.Interfaces.DataType.Condition:
@@ -87,6 +93,7 @@ namespace MTConnectAgentCoreWindows
           //Console.WriteLine("Value (" + item.Name + ") hasn't changed: " + item.Item.Value);
         }
       }
+      // Just to be safe, update Adapter with all current values
       myPC.Adapter.SendChanged();
     }
 
@@ -94,10 +101,10 @@ namespace MTConnectAgentCoreWindows
     {
       try
       {
+        // Start all tasks; Adapter (myPC), Agent (agent), and Timer Collection (aTimer)
         myPC.Start(false);
         agent.Start();
         aTimer.Start();
-
       }
       catch (AgentException exp)
       {
@@ -110,12 +117,11 @@ namespace MTConnectAgentCoreWindows
       this.button1.Enabled = false;
       this.button2.Enabled = true;
       this.WindowState = FormWindowState.Minimized;
-
-      //this.textBox1.Text = "Agent Started";
     }
 
     private void button2_Click(object sender, EventArgs e)
     {
+      // Stop all tasks; Adapter (myPC), Agent (agent), and Timer Collection (aTimer)
       aTimer.Stop();
       myPC.Stop();
       agent.Stop();

@@ -9,23 +9,23 @@ https://github.com/dyanglei/MTConnect-dotnetagent/tree/master/src
 https://github.com/mtconnect/adapter
 
 # Usage
-The Released 'MTCAgentWindows' should be ready to run on any PC without changes. It  requires administrative priveleges to open the port (5000).
+The Released *MTCAgentWindows* should be ready to run on any PC without changes. It  requires administrative priveleges to open the port (5000).
 
-The 'MTConnectAgentWindowsService' I have found will not work for most User-based data items since Windows Services don't inherently have access to the User level.
+The *MTConnectAgentWindowsService* I have found will not work for most User-based data items since Windows Services don't inherently have access to the User level.
 
 # Data Items
 Here's a list of currently supported Data Items: 
 
- - (avail) Availability (Always AVAILABLE since the PC is on)
- - (posx, posy) Cursor Position (in PIXELS)
- - (cpuu) CPU Usage (in PERCENT)
- - (memu) Memory Usage (in BYTES)
- - (lclk, rclk) Left/Right Mouse Button down event
- - (enun) Username
- - (enud) User Domain
- - (enmn) Machine name
- - (enos) Operating System Version
- - (aapp) Active Window Title
- - (locx, locy, sizx, sizy) Location/Size of Active Window
+ - *(avail)* **Availability** (Always AVAILABLE since the PC is on)
+ - *(posx, posy)* **Cursor Position** (in PIXELS)
+ - *(cpuu)* **CPU Usage** (in PERCENT)
+ - *(memu)* **Memory Usage** (in BYTES)
+ - *(lclk, rclk)* **Left/Right Mouse Button** down event
+ - *(enun)* **Username**
+ - *(enud)* **User Domain**
+ - *(enmn)* **Machine name**
+ - *(enos)* **Operating System Version**
+ - *(aapp)* **Active Window Title**
+ - *(locx, locy, sizx, sizy)* **Location/Size of Active Window**
 
-Most of these items are utilizing user32.dll methods, others are taken from the Environment namespace.
+Most of these items are utilizing **user32.dll** methods, others are taken from the Environment namespace.
