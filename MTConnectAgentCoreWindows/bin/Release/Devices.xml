@@ -10,12 +10,12 @@
       <Components>
 				<Os name="OS" id="id2">
 					<DataItems>
-						<DataItem category="SAMPLE" id="posx" name="posx" type="POSITION" units="PIXEL"></DataItem>
-						<DataItem category="SAMPLE" id="posy" name="posy" type="POSITION" units="PIXEL"></DataItem>
+						<DataItem category="SAMPLE" id="posx" name="posx" type="POSITION" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="posy" name="posy" type="POSITION" units="PIXELS"></DataItem>
 						<DataItem category="EVENT" id="lclk" name="lclk" type="CLICK" subType="LEFT"></DataItem>
 						<DataItem category="EVENT" id="rclk" name="rclk" type="CLICK" subType="RIGHT"></DataItem>
 						<DataItem category="SAMPLE" id="cpuu" name="cpuu" type="RESOURCE_USAGE" units="PERCENT"></DataItem>
-						<DataItem category="SAMPLE" id="memu" name="memu" type="RESOURCE_USAGE" units="BYTES"></DataItem>
+						<DataItem category="SAMPLE" id="memu" name="memu" type="RESOURCE_USAGE" units="MEGABYTES"></DataItem>
 						<DataItem category="EVENT" id="enun" name="enun" type="USERNAME"></DataItem>
 						<DataItem category="EVENT" id="enud" name="enud" type="USERDOMAIN"></DataItem>
 						<DataItem category="EVENT" id="enmn" name="enmn" type="MACHINENAME"></DataItem>
@@ -25,10 +25,10 @@
 				<Software name="Active" id="id9">
 					<DataItems>
 						<DataItem category="EVENT" id="aapp" name="aapp" type="PROGRAM"></DataItem>
-						<DataItem category="SAMPLE" id="locx" name="locx" type="POSITION" units="PIXEL"></DataItem>
-						<DataItem category="SAMPLE" id="locy" name="locy" type="POSITION" units="PIXEL"></DataItem>
-						<DataItem category="SAMPLE" id="sizx" name="sizx" type="SIZE" units="PIXEL"></DataItem>
-						<DataItem category="SAMPLE" id="sizy" name="sizy" type="SIZE" units="PIXEL"></DataItem>
+						<DataItem category="SAMPLE" id="locx" name="locx" type="POSITION" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="locy" name="locy" type="POSITION" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="sizx" name="sizx" type="SIZE" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="sizy" name="sizy" type="SIZE" units="PIXELS"></DataItem>
 					</DataItems>
 				</Software>
       </Components>

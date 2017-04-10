@@ -540,8 +540,16 @@
       <xs:enumeration value="SECOND"/>
       <xs:enumeration value="VOLT"/>
       <xs:enumeration value="WATT"/>
-      <xs:enumeration value="PIXEL"/>
+      <xs:enumeration value="PIXELS"/>
+      <xs:enumeration value="BITS"/>
+      <xs:enumeration value="NIBBLES"/>
       <xs:enumeration value="BYTES"/>
+      <xs:enumeration value="KILOBYTES"/>
+      <xs:enumeration value="MEGABYTES"/>
+      <xs:enumeration value="GIGABYTES"/>
+      <xs:enumeration value="TERABYTES"/>
+      <xs:enumeration value="PETABYTES"/>
+      <xs:enumeration value="XETABYTES"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="UnitsType">
