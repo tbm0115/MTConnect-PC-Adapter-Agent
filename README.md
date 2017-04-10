@@ -5,6 +5,7 @@ A MTConnect Adapter and Agent for Windows PCs. MTConnect streams to port 5000 of
 This is based on the following Repositories:
 
 https://github.com/dyanglei/MTConnect-dotnetagent/tree/master/src
+
 https://github.com/mtconnect/adapter
 
 # Usage

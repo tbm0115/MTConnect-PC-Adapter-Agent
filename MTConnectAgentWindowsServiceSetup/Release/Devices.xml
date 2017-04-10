@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectDevices  xmlns="urn:mtconnect.org:MTConnectDevices:1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectDevices:1.1 http://www.mtconnect.org/schemas/MTConnectDevices_1.1.xsd">
+  <Header version="1.1" sender="Company MTConnect Instance" creationTime="2010-08-26T19:00:47-07:00" instanceId="1" bufferSize="5000"/>
+  <Devices>
+    <Device sampleRate="10.0" name="IRON-11" iso841Class="1" uuid="pc" id="IRON-11">
+      <Description manufacturer="Dell" serialNumber="Latitude E6540"></Description>
+      <DataItems>
+        <DataItem category="EVENT" id="id1" name="avail" type="AVAILABILITY"></DataItem>
+      </DataItems>
+      <Components>
+				<Os name="OS" id="id2">
+					<DataItems>
+						<DataItem category="SAMPLE" id="id3" name="posx" type="POSITION" units="PIXEL"></DataItem>
+						<DataItem category="SAMPLE" id="id4" name="posy" type="POSITION" units="PIXEL"></DataItem>
+						<DataItem category="EVENT" id="id5" name="lclk" type="CLICK" subType="LEFT"></DataItem>
+						<DataItem category="EVENT" id="id6" name="rclk" type="CLICK" subType="RIGHT"></DataItem>
+						<DataItem category="SAMPLE" id="id7" name="cpuu" type="CPU_USAGE" units="PERCENT"></DataItem>
+						<DataItem category="SAMPLE" id="id8" name="memu" type="MEMORY_USAGE" units="BYTES"></DataItem>
+						<DataItem category="EVENT" id="id15" name="enun" type="USERNAME"></DataItem>
+						<DataItem category="EVENT" id="id16" name="enud" type="USERDOMAIN"></DataItem>
+						<DataItem category="EVENT" id="id17" name="enmn" type="MACHINENAME"></DataItem>
+						<DataItem category="EVENT" id="id18" name="enos" type="OS"></DataItem>
+						<Components>
+							<Software name="Active" id="id9">
+								<DataItem category="EVENT" id="id10" name="aapp" type="ACTIVE_WINDOW"></DataItem>
+								<DataItem category="SAMPLE" id="id11" name="locx" type="POSITION" units="PIXEL"></DataItem>
+								<DataItem category="SAMPLE" id="id12" name="locy" type="POSITION" units="PIXEL"></DataItem>
+								<DataItem category="SAMPLE" id="id13" name="sizx" type="SIZE" units="PIXEL"></DataItem>
+								<DataItem category="SAMPLE" id="id14" name="sizy" type="SIZE" units="PIXEL"></DataItem>
+							</Software>
+						</Components>
+					</DataItems>
+				</Os>
+      </Components>
+    </Device>
+  </Devices>
+</MTConnectDevices>
+

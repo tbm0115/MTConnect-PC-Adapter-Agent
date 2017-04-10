@@ -48,7 +48,6 @@ namespace MTConnectAgentCoreWindows
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentUserDomain(myPC.Adapter, "enud"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentMachineName(myPC.Adapter, "enmn"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentOS(myPC.Adapter, "enos"));
-
     }
 
     private void aTimer_Elapsed(object sender, ElapsedEventArgs e)
