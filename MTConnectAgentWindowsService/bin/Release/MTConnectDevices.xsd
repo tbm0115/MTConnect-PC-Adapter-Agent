@@ -194,6 +194,7 @@
       <xs:enumeration value="MACHINENAME"/>
       <xs:enumeration value="OS"/>
       <xs:enumeration value="SIZE"/>
+      <xs:enumeration value="KEY"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="DataItemEnumType">

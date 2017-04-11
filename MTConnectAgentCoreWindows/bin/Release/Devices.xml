@@ -5,30 +5,40 @@
     <Device sampleRate="10.0" name="IRON-11" iso841Class="1" uuid="pc" id="IRON-11">
       <Description manufacturer="Dell" serialNumber="Latitude E6540"></Description>
       <DataItems>
-        <DataItem category="EVENT" id="avail" name="avail" type="AVAILABILITY"></DataItem>
+        <DataItem category="EVENT" id="avail" name="TurnedOn" type="AVAILABILITY"></DataItem>
+				<DataItem category="EVENT" id="maca" name="MACAddress" type="SYSTEM"></DataItem>
       </DataItems>
       <Components>
-				<Os name="OS" id="id2">
+				<Os name="OperatingSystem" id="id2">
 					<DataItems>
-						<DataItem category="SAMPLE" id="posx" name="posx" type="POSITION" units="PIXELS"></DataItem>
-						<DataItem category="SAMPLE" id="posy" name="posy" type="POSITION" units="PIXELS"></DataItem>
-						<DataItem category="EVENT" id="lclk" name="lclk" type="CLICK" subType="LEFT"></DataItem>
-						<DataItem category="EVENT" id="rclk" name="rclk" type="CLICK" subType="RIGHT"></DataItem>
-						<DataItem category="SAMPLE" id="cpuu" name="cpuu" type="RESOURCE_USAGE" units="PERCENT"></DataItem>
-						<DataItem category="SAMPLE" id="memu" name="memu" type="RESOURCE_USAGE" units="MEGABYTES"></DataItem>
-						<DataItem category="EVENT" id="enun" name="enun" type="USERNAME"></DataItem>
-						<DataItem category="EVENT" id="enud" name="enud" type="USERDOMAIN"></DataItem>
-						<DataItem category="EVENT" id="enmn" name="enmn" type="MACHINENAME"></DataItem>
-						<DataItem category="EVENT" id="enos" name="enos" type="OS"></DataItem>
+						<DataItem category="SAMPLE" id="posx" name="CursorPositionX" type="POSITION" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="posy" name="CursorPositionY" type="POSITION" units="PIXELS"></DataItem>
+						<DataItem category="EVENT" id="lclk" name="MouseLeftClicked" type="CLICK" subType="LEFT"></DataItem>
+						<DataItem category="EVENT" id="rclk" name="MouseRightClicked" type="CLICK" subType="RIGHT"></DataItem>
+						<DataItem category="SAMPLE" id="cpuu" name="CPUUsage" type="RESOURCE_USAGE" units="PERCENT"></DataItem>
+						<DataItem category="SAMPLE" id="memu" name="MemoryUsage" type="RESOURCE_USAGE" units="MEGABYTES"></DataItem>
+						<DataItem category="EVENT" id="enun" name="UserName" type="USERNAME"></DataItem>
+						<DataItem category="EVENT" id="enud" name="UserDomainName" type="USERDOMAIN"></DataItem>
+						<DataItem category="EVENT" id="enmn" name="MachineName" type="MACHINENAME"></DataItem>
+						<DataItem category="EVENT" id="enos" name="OSVersion" type="OS"></DataItem>
+						<DataItem category="EVENT" id="kalt" name="AltKeyDown" type="KEY"></DataItem>
+						<DataItem category="EVENT" id="kctl" name="CtrlKeyDown" type="KEY"></DataItem>
+						<DataItem category="EVENT" id="kcap" name="CapsLockOn" type="KEY"></DataItem>
+						<DataItem category="EVENT" id="knum" name="NumLockOn" type="KEY"></DataItem>
+						<DataItem category="EVENT" id="kscl" name="ScrollLockOn" type="KEY"></DataItem>
+						<DataItem category="EVENT" id="ksht" name="ShiftKeyDown" type="KEY"></DataItem>
+						<DataItem category="EVENT" id="cntp" name="ProcessCount" type="SYSTEM"></DataItem>
 					</DataItems>
 				</Os>
-				<Software name="Active" id="id9">
+				<Software name="ActiveSoftware" id="id9">
 					<DataItems>
-						<DataItem category="EVENT" id="aapp" name="aapp" type="PROGRAM"></DataItem>
-						<DataItem category="SAMPLE" id="locx" name="locx" type="POSITION" units="PIXELS"></DataItem>
-						<DataItem category="SAMPLE" id="locy" name="locy" type="POSITION" units="PIXELS"></DataItem>
-						<DataItem category="SAMPLE" id="sizx" name="sizx" type="SIZE" units="PIXELS"></DataItem>
-						<DataItem category="SAMPLE" id="sizy" name="sizy" type="SIZE" units="PIXELS"></DataItem>
+						<DataItem category="EVENT" id="aapp" name="ActiveWindowTitle" type="PROGRAM"></DataItem>
+						<DataItem category="SAMPLE" id="locx" name="ActiveWindowPositionX" type="POSITION" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="locy" name="ActiveWindowPositionY" type="POSITION" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="sizx" name="ActiveWindowWidth" type="SIZE" units="PIXELS"></DataItem>
+						<DataItem category="SAMPLE" id="sizy" name="ActiveWindowHeight" type="SIZE" units="PIXELS"></DataItem>
+						<DataItem category="EVENT" id="aexe" name="ActiveProcessEXE" type="SYSTEM"></DataItem>
+						<DataItem category="EVENT" id="ares" name="ActiveProcessResponsive" type="SYSTEM"></DataItem>
 					</DataItems>
 				</Software>
       </Components>

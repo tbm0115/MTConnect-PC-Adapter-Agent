@@ -50,6 +50,16 @@ namespace MTConnectAgentCoreWindows
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentUserDomain(myPC.Adapter, "enud"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentMachineName(myPC.Adapter, "enmn"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentOS(myPC.Adapter, "enos"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.AltKeyDown(myPC.Adapter, "kalt"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.CtrlKeyDown(myPC.Adapter, "kctl"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.CapsLockDown(myPC.Adapter, "kcap"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.NumLockDown(myPC.Adapter, "knum"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.ScrollLockDown(myPC.Adapter, "kscl"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.ShiftKeyDown(myPC.Adapter, "ksht"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.ProcessCount(myPC.Adapter, "cntp"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.ActiveWindowEXE(myPC.Adapter, "aexe"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.ActiveWindowResponding(myPC.Adapter, "ares"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentMAC(myPC.Adapter, "maca"));
     }
 
     private void aTimer_Elapsed(object sender, ElapsedEventArgs e)
