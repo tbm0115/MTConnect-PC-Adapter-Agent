@@ -60,6 +60,7 @@ namespace MTConnectAgentCoreWindows
       myPC.DataItems.Add(new PCAdapter.Interfaces.ActiveWindowEXE(myPC.Adapter, "aexe"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.ActiveWindowResponding(myPC.Adapter, "ares"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentMAC(myPC.Adapter, "maca"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.ExecutionStatus(myPC.Adapter, "exec"));
     }
 
     private void aTimer_Elapsed(object sender, ElapsedEventArgs e)

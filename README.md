@@ -14,18 +14,23 @@ The Released *MTCAgentWindows* should be ready to run on any PC without changes.
 The *MTConnectAgentWindowsService* I have found will not work for most User-based data items since Windows Services don't inherently have access to the User level.
 
 # Data Items
-Here's a list of currently supported Data Items: 
+Here's a list of currently supported Data Items (Id is enclosed in *()* ): 
 
  - *(avail)* **Availability** (Always AVAILABLE since the PC is on)
- - *(posx, posy)* **Cursor Position** (in PIXELS)
  - *(cpuu)* **CPU Usage** (in PERCENT)
- - *(memu)* **Memory Usage** (in BYTES)
- - *(lclk, rclk)* **Left/Right Mouse Button** down event
+ - *(memu)* **Memory Usage** (in MEGABYTES of total currently used)
+ - *(cntp)* **Total Process Count**
+ - *(maca)* **MAC Address**
  - *(enun)* **Username**
  - *(enud)* **User Domain**
  - *(enmn)* **Machine name**
  - *(enos)* **Operating System Version**
+ - *(lclk, rclk)* **Left/Right Mouse Button** down event
+ - *(posx, posy)* **Cursor Position** (in PIXELS)
  - *(aapp)* **Active Window Title**
  - *(locx, locy, sizx, sizy)* **Location/Size of Active Window**
+ - *(aexe)* **Active Window EXE**
+ - *(ares)* **Active Window Response State**
+ - *(kalt, kctl, kcap, knum, kscl, ksht)* **Control Key State** for Alt, Ctrl, CapsLock, NumLock, ScrollLock, and Shift
 
 Most of these items are utilizing **user32.dll** methods, others are taken from the Environment namespace.

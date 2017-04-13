@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MTConnectDevices  xmlns="urn:mtconnect.org:MTConnectDevices:1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectDevices:1.1 http://www.mtconnect.org/schemas/MTConnectDevices_1.1.xsd">
-  <Header version="1.1" sender="Company MTConnect Instance" creationTime="2010-08-26T19:00:47-07:00" instanceId="1" bufferSize="5000"/>
+  <Header version="1.1" sender="Navi" creationTime="2010-08-26T19:00:47-07:00" instanceId="1" bufferSize="5000"/>
   <Devices>
-    <Device sampleRate="10.0" name="IRON-11" iso841Class="1" uuid="pc" id="IRON-11">
+    <Device sampleRate="10.0" name="IRON-11" iso841Class="1" uuid="IRON-11" id="IRON-11">
       <Description manufacturer="Dell" serialNumber="Latitude E6540"></Description>
       <DataItems>
         <DataItem category="EVENT" id="avail" name="TurnedOn" type="AVAILABILITY"></DataItem>
@@ -28,6 +28,7 @@
 						<DataItem category="EVENT" id="kscl" name="ScrollLockOn" type="KEY"></DataItem>
 						<DataItem category="EVENT" id="ksht" name="ShiftKeyDown" type="KEY"></DataItem>
 						<DataItem category="EVENT" id="cntp" name="ProcessCount" type="SYSTEM"></DataItem>
+						<DataItem category="EVENT" id="exec" name="Execution" type="SYSTEM"></DataItem>
 					</DataItems>
 				</Os>
 				<Software name="ActiveSoftware" id="id9">
