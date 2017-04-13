@@ -42,6 +42,13 @@
 						<DataItem category="EVENT" id="ares" name="ActiveProcessResponsive" type="SYSTEM"></DataItem>
 					</DataItems>
 				</Software>
+				<Battery name="SystemBattery" id="batt">
+					<DataItems>
+						<DataItem category="EVENT" id="bsts" name="BatteryStatus" type="POWER_STATE"></DataItem>
+						<DataItem category="EVENT" id="bacs" name="ACLineStatus" type="SYSTEM"></DataItem>
+						<DataItem category="SAMPLE" id="blvl" name="BatteryLevel" type="LOAD" units="PERCENT"></DataItem>
+					</DataItems>
+				</Battery>
       </Components>
     </Device>
   </Devices>

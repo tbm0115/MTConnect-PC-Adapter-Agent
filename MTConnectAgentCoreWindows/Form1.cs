@@ -61,6 +61,9 @@ namespace MTConnectAgentCoreWindows
       myPC.DataItems.Add(new PCAdapter.Interfaces.ActiveWindowResponding(myPC.Adapter, "ares"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.EnvironmentMAC(myPC.Adapter, "maca"));
       myPC.DataItems.Add(new PCAdapter.Interfaces.ExecutionStatus(myPC.Adapter, "exec"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.BatteryStatus(myPC.Adapter, "bsts"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.ACStatus(myPC.Adapter, "bacs"));
+      myPC.DataItems.Add(new PCAdapter.Interfaces.BatteryLevel(myPC.Adapter, "blvl"));
     }
 
     private void aTimer_Elapsed(object sender, ElapsedEventArgs e)
