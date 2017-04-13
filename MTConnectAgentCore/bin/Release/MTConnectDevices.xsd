@@ -465,6 +465,23 @@
       </xs:documentation>
     </xs:annotation>
   </xs:element>
+  <xs:complexType name="Win32Type">
+    <xs:annotation>
+      <xs:documentation>
+        A Win32 instance
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CommonComponentType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Win32" substitutionGroup="CommonComponent" type="Win32Type">
+    <xs:annotation>
+      <xs:documentation>
+        A system Win32 type
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
   <xs:simpleType name="SampleRateType">
     <xs:annotation>
       <xs:documentation>

@@ -30,6 +30,16 @@
 						<DataItem category="EVENT" id="cntp" name="ProcessCount" type="SYSTEM"></DataItem>
 						<DataItem category="EVENT" id="exec" name="Execution" type="SYSTEM"></DataItem>
 					</DataItems>
+					<Components>
+						<Win32 name="Win32" id="id3">
+							<DataItems>
+								<DataItem category="EVENT" id="werr" name="LastWin32Error" type="MESSAGE"></DataItem>
+								<DataItem category="EVENT" id="wexs" name="LastWin32Source" type="MESSAGE"></DataItem>
+								<DataItem category="EVENT" id="wexe" name="LastWin32Exception" type="MESSAGE"></DataItem>
+								<DataItem category="EVENT" id="wext" name="LastWin32Target" type="MESSAGE"></DataItem>
+							</DataItems>
+						</Win32>
+					</Components>
 				</Os>
 				<Software name="ActiveSoftware" id="id9">
 					<DataItems>
