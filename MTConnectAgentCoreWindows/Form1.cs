@@ -21,13 +21,20 @@ namespace MTConnectAgentCoreWindows
     PC myPC;
     System.Timers.Timer aTimer;
     const string _timeFormat = "yyyy-MM-ddTHH\\:mm\\:ss.fffzzz";
+    public States State { get; set; }
+    public enum States{
+      Started = 1,
+      Stopped = -1,
+      Paused = 0
+    }
 
     public Form1()
     {
+      this.State = States.Stopped;
       InitializeComponent();
       // Initialize Agent
       agent = new Agent();
-      this.button2.Enabled = false;
+      this.btnStop.Enabled = false;
       // Initialize Timer
       aTimer = new System.Timers.Timer(50);
       aTimer.Elapsed += new ElapsedEventHandler(aTimer_Elapsed);
@@ -75,8 +82,17 @@ namespace MTConnectAgentCoreWindows
       // Iterate through each DataItem (set in Initialization)
       foreach (PCAdapter.Interfaces.IDataItem item in myPC.DataItems)
       {
+
         // Refresh value
-        item.GetValue();
+#if DEBUG
+        object val = "TESTING";
+#else
+        object val = item.GetValue();
+#endif
+
+        if (this.State == States.Paused){
+          val = "UNAVAILABLE";
+        }
         if (item.Item.Changed)
         {
           // Check DataItem type (Condition, Sample, Event)
@@ -84,20 +100,17 @@ namespace MTConnectAgentCoreWindows
           switch (item.ValueType)
           {
             case PCAdapter.Interfaces.DataType.Condition:
-              if (agent.StoreCondition(DateTime.Now.ToString(_timeFormat), item.Name, "NORMAL", Convert.ToString(item.GetValue()), null, null) > 0)
-              {
+              if (agent.StoreCondition(DateTime.Now.ToString(_timeFormat), item.Name, "NORMAL", Convert.ToString(val), null, null) > 0){
                 Console.WriteLine("StoreCondition was not successful for " + item.Name + ": " + item.Item.Value.ToString());
               }
               break;
             case PCAdapter.Interfaces.DataType.Event:
-              if (agent.StoreEvent(DateTime.Now.ToString(_timeFormat), item.Name, Convert.ToString(item.GetValue()), null, null) > 0)
-              {
+              if (agent.StoreEvent(DateTime.Now.ToString(_timeFormat), item.Name, Convert.ToString(val), null, null) > 0){
                 Console.WriteLine("StoreEvent was not successful for " + item.Name + ": " + item.Item.Value.ToString());
               }
               break;
             case PCAdapter.Interfaces.DataType.Sample:
-              if (agent.StoreSample(DateTime.Now.ToString(_timeFormat), item.Name, Convert.ToString(item.GetValue())) > 0)
-              {
+              if (agent.StoreSample(DateTime.Now.ToString(_timeFormat), item.Name, Convert.ToString(val)) > 0){
                 Console.WriteLine("StoreSample was not successful for " + item.Name + ": " + item.Item.Value.ToString());
               }
               break;
@@ -105,9 +118,7 @@ namespace MTConnectAgentCoreWindows
               Console.WriteLine("Cannot determine DataItem ValueType!\nName: " + item.Name + "\nDataType: " + item.ValueType.ToString());
               break;
           }
-        }
-        else
-        {
+        }else{
           //Console.WriteLine("Value (" + item.Name + ") hasn't changed: " + item.Item.Value);
         }
       }
@@ -115,41 +126,100 @@ namespace MTConnectAgentCoreWindows
       myPC.Adapter.SendChanged();
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void btnStart_Click(object sender, EventArgs e)
     {
-      try
-      {
-        // Start all tasks; Adapter (myPC), Agent (agent), and Timer Collection (aTimer)
-        myPC.Start(false);
-        agent.Start();
-        aTimer.Start();
+      try{
+        if (this.State != States.Paused){
+          // Start all tasks; Adapter (myPC), Agent (agent), and Timer Collection (aTimer)
+          myPC.Start(false);
+          agent.Start();
+          aTimer.Start();
+        }
+        //this.State = States.Started;
+        UpdateStatus(States.Started);
+        Form_Hide();
       }
-      catch (AgentException exp)
-      {
+      catch (AgentException exp){
         String msg = exp.Message;
         if (exp.InnerException != null)
           msg = msg + "\n" + exp.InnerException.Message + exp.InnerException.ToString();
         MessageBox.Show(this, msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         this.Dispose();
+        //this.State = States.Stopped;
+        UpdateStatus(States.Stopped);
       }
-      this.button1.Enabled = false;
-      this.button2.Enabled = true;
-      this.WindowState = FormWindowState.Minimized;
     }
 
-    private void button2_Click(object sender, EventArgs e)
+    private void btnStop_Click(object sender, EventArgs e)
     {
       // Stop all tasks; Adapter (myPC), Agent (agent), and Timer Collection (aTimer)
       aTimer.Stop();
       myPC.Stop();
       agent.Stop();
-      this.button1.Enabled = true;
-      this.button2.Enabled = false;
+      UpdateStatus(States.Stopped);
     }
 
     private void Form1_Load(object sender, EventArgs e)
     {
-      button1_Click(button1, null);
+      btnStart_Click(btnStart, null);
+    }
+
+    private void btnPause_Click(object sender, EventArgs e)
+    {
+      UpdateStatus(States.Paused);
+    }
+    
+    private void UpdateStatus(States state){
+      this.State = state;
+      switch (this.State)
+      {
+        case States.Started:
+          this.btnStart.Enabled = false;
+          this.btnStop.Enabled = true;
+          this.btnPause.Enabled = true;
+          lblStatus.Text = "Started";
+          lblStatus.BackColor = btnStart.BackColor;
+          break;
+        case States.Stopped:
+          this.btnStart.Enabled = true;
+          this.btnStop.Enabled = false;
+          this.btnPause.Enabled = false;
+          lblStatus.Text = "Stopped";
+          lblStatus.BackColor = btnStop.BackColor;
+          break;
+        case States.Paused:
+          this.btnPause.Enabled = false;
+          this.btnStart.Enabled = true;
+          this.btnStop.Enabled = false;
+          lblStatus.Text = "Paused";
+          lblStatus.BackColor = btnPause.BackColor;
+          break;
+        default:
+          this.btnStart.Enabled = true;
+          this.btnStop.Enabled = false;
+          this.btnPause.Enabled = false;
+          lblStatus.Text = "Press Start";
+          break;
+      }
+    }
+
+    private void Form_Hide(){
+      this.ShowInTaskbar = false;
+      ToolTipMessage("Click the MTConnect PC Agent/Adapter Icon to show again...");
+      //this.WindowState = FormWindowState.Minimized;
+      this.Hide();
+    }
+    private void ToolTipMessage(string msg, int length = 5000)
+    {
+      this.taskIcon.ShowBalloonTip(length, "MTConnect PC Agent/Adapter", msg, ToolTipIcon.Info);
+    }
+    private void Form_Show()
+    {
+      this.ShowInTaskbar = true;
+      this.taskIcon.Visible = false;
+      this.Show();
+      this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+      this.Focus();
     }
   }
 }
