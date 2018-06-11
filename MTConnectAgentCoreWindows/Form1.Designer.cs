@@ -37,6 +37,7 @@
       this.linkProbe = new System.Windows.Forms.LinkLabel();
       this.btnPause = new System.Windows.Forms.Button();
       this.lblStatus = new System.Windows.Forms.Label();
+      this.mnuPlugins = new System.Windows.Forms.MenuStrip();
       this.SuspendLayout();
       // 
       // btnStart
@@ -63,10 +64,10 @@
       // 
       // taskIcon
       // 
-      //this.taskIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.taskIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
       this.taskIcon.BalloonTipText = "{Enter Message}";
       this.taskIcon.BalloonTipTitle = "{Enter Title}";
+      this.taskIcon.Icon = this.Icon;
       this.taskIcon.Text = "MTConnect Adapter/Agent";
       this.taskIcon.Visible = true;
       this.taskIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TaskIcon_MouseDoubleClick);
@@ -115,6 +116,14 @@
       this.lblStatus.TabIndex = 5;
       this.lblStatus.Text = "Status";
       // 
+      // mnuPlugins
+      // 
+      this.mnuPlugins.Location = new System.Drawing.Point(0, 0);
+      this.mnuPlugins.Name = "mnuPlugins";
+      this.mnuPlugins.Size = new System.Drawing.Size(372, 24);
+      this.mnuPlugins.TabIndex = 6;
+      this.mnuPlugins.Text = "menuStrip1";
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,14 +135,9 @@
       this.Controls.Add(this.linkCurrent);
       this.Controls.Add(this.btnStop);
       this.Controls.Add(this.btnStart);
+      this.Controls.Add(this.mnuPlugins);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      // 
-      // taskIcon
-      // 
-      this.taskIcon.Icon = this.Icon;
-      //
-      // Form1
-      //
+      this.MainMenuStrip = this.mnuPlugins;
       this.MaximizeBox = false;
       this.Name = "Form1";
       this.Text = "MTConnect Core Agent";
@@ -174,6 +178,7 @@
     private System.Windows.Forms.Button btnPause;
     public System.Windows.Forms.NotifyIcon taskIcon;
     private System.Windows.Forms.Label lblStatus;
+    private System.Windows.Forms.MenuStrip mnuPlugins;
   }
 }
 

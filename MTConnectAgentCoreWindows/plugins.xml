@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Interfaces>
+  <Interface name="IPCAgent.Interfaces.IMenuOption">
+    <Plugin name="MTCPCDevelopmentTracker.DaysReportOption">False</Plugin>
+  </Interface>
+  <Interface name="IPCAgent.Interfaces.ITick" />
+</Interfaces>

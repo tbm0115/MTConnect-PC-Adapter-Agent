@@ -83,6 +83,10 @@
     <Reference Include="DotNetAdapterSDK">
       <HintPath>..\..\..\..\dot_net_sdk-master\PCAdapter\bin\Debug\DotNetAdapterSDK.dll</HintPath>
     </Reference>
+    <Reference Include="IPCAgent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IPCAgent\bin\Debug\IPCAgent.dll</HintPath>
+    </Reference>
     <Reference Include="PCAdapter, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\dot_net_sdk-master\PCAdapter\bin\Debug\PCAdapter.dll</HintPath>
@@ -126,7 +130,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -163,6 +169,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MTConnect Icon.ico" />
+    <Content Include="plugins.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plugins\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

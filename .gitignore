@@ -238,3 +238,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/MTConnectAgentCoreWindows/bin/Release/Plugins

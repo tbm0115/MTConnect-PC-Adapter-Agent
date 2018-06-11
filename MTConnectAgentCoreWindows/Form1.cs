@@ -19,6 +19,8 @@ namespace MTConnectAgentCoreWindows
   {
     Agent agent;
     PC myPC;
+    List<IPCAgent.Interfaces.IMenuOption> MenuOptionPlugins;
+    List<IPCAgent.Interfaces.ITick> TickPlugins;
     System.Timers.Timer aTimer;
     const string _timeFormat = "yyyy-MM-ddTHH\\:mm\\:ss.fffzzz";
     public States State { get; set; }
@@ -28,10 +30,39 @@ namespace MTConnectAgentCoreWindows
       Paused = 0
     }
 
+    public void MenuOptionPlugin_Clicked(object obj, EventArgs e){
+      ToolStripItem tsi = (ToolStripItem)obj;
+      ((IPCAgent.Interfaces.IMenuOption)tsi.Tag).Clicked();
+    }
+
     public Form1()
     {
       this.State = States.Stopped;
+
+
       InitializeComponent();
+
+      // Manage Plugins
+      //    Initialize
+      this.MenuOptionPlugins = new List<IPCAgent.Interfaces.IMenuOption>();
+      this.TickPlugins = new List<IPCAgent.Interfaces.ITick>();
+      //    Load PluginManager from settings
+      string exeDir = System.Reflection.Assembly.GetExecutingAssembly().Location;
+      exeDir = exeDir.Remove(exeDir.LastIndexOf(@"\"));
+      var pluginManager = new IPCAgent.PluginManager(System.IO.Path.Combine(exeDir, "plugins.xml"), System.IO.Path.Combine(exeDir, "Plugins"));
+      pluginManager.Save();
+      //    Find proper plugins
+      this.MenuOptionPlugins.AddRange(pluginManager.Get<IPCAgent.Interfaces.IMenuOption>());
+      this.TickPlugins.AddRange(pluginManager.Get<IPCAgent.Interfaces.ITick>());
+      //    Add Menu Option plugins
+      foreach (IPCAgent.Interfaces.IMenuOption mnuPlugin in this.MenuOptionPlugins)
+      {
+        ToolStripItem tsi = mnuPlugins.Items.Add(mnuPlugin.Name);
+        tsi.ToolTipText = mnuPlugin.Description;
+        tsi.Tag = mnuPlugin;
+        tsi.Click += MenuOptionPlugin_Clicked;
+      }
+
       // Initialize Agent
       agent = new Agent();
       this.btnStop.Enabled = false;
@@ -79,20 +110,25 @@ namespace MTConnectAgentCoreWindows
 
     private void aTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
+      IPCAgent.Interfaces.MTConnectData mtcSend = new IPCAgent.Interfaces.MTConnectData();
+
       // Iterate through each DataItem (set in Initialization)
-      foreach (PCAdapter.Interfaces.IDataItem item in myPC.DataItems)
-      {
+      foreach (PCAdapter.Interfaces.IDataItem item in myPC.DataItems){
 
         // Refresh value
 #if DEBUG
-        object val = "TESTING";
+        string val = "TESTING"; // This is done to avoid errors with elevated priviledges.
 #else
-        object val = item.GetValue();
+        string val = Convert.ToString(item.GetValue());
 #endif
 
         if (this.State == States.Paused){
           val = "UNAVAILABLE";
         }
+
+        // Populate mtcSend
+        mtcSend.DataItems.Add(new IPCAgent.Interfaces.MTConnectData.MTConnectDataItem(item, val, item.Item.Changed));
+
         if (item.Item.Changed)
         {
           // Check DataItem type (Condition, Sample, Event)
@@ -100,17 +136,17 @@ namespace MTConnectAgentCoreWindows
           switch (item.ValueType)
           {
             case PCAdapter.Interfaces.DataType.Condition:
-              if (agent.StoreCondition(DateTime.Now.ToString(_timeFormat), item.Name, "NORMAL", Convert.ToString(val), null, null) > 0){
+              if (agent.StoreCondition(DateTime.Now.ToString(_timeFormat), item.Name, "NORMAL", val, null, null) > 0){
                 Console.WriteLine("StoreCondition was not successful for " + item.Name + ": " + item.Item.Value.ToString());
               }
               break;
             case PCAdapter.Interfaces.DataType.Event:
-              if (agent.StoreEvent(DateTime.Now.ToString(_timeFormat), item.Name, Convert.ToString(val), null, null) > 0){
+              if (agent.StoreEvent(DateTime.Now.ToString(_timeFormat), item.Name, val, null, null) > 0){
                 Console.WriteLine("StoreEvent was not successful for " + item.Name + ": " + item.Item.Value.ToString());
               }
               break;
             case PCAdapter.Interfaces.DataType.Sample:
-              if (agent.StoreSample(DateTime.Now.ToString(_timeFormat), item.Name, Convert.ToString(val)) > 0){
+              if (agent.StoreSample(DateTime.Now.ToString(_timeFormat), item.Name, val) > 0){
                 Console.WriteLine("StoreSample was not successful for " + item.Name + ": " + item.Item.Value.ToString());
               }
               break;
@@ -124,6 +160,11 @@ namespace MTConnectAgentCoreWindows
       }
       // Just to be safe, update Adapter with all current values
       myPC.Adapter.SendChanged();
+
+      // Send data to all Tick plugins
+      foreach (IPCAgent.Interfaces.ITick tickPlugin in this.TickPlugins){
+        tickPlugin.Ticked(mtcSend);
+      }
     }
 
     private void btnStart_Click(object sender, EventArgs e)
@@ -216,7 +257,7 @@ namespace MTConnectAgentCoreWindows
     private void Form_Show()
     {
       this.ShowInTaskbar = true;
-      this.taskIcon.Visible = false;
+      //this.taskIcon.Visible = false;
       this.Show();
       this.WindowState = System.Windows.Forms.FormWindowState.Normal;
       this.Focus();

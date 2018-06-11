@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTConnectAgentCore", "MTConnectAgentCore\MTConnectAgentCore.csproj", "{6E2FB27A-DD3C-4970-A533-8A7A41297E39}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTConnectAgentWindowsService", "MTConnectAgentWindowsService\MTConnectAgentWindowsService.csproj", "{50CF541B-28F4-4079-8E97-17B12D8B482F}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MTConnectAgentWindowsServiceSetup", "MTConnectAgentWindowsServiceSetup\MTConnectWindowsServiceSetup.vdproj", "{1E27F26A-0A53-4033-A9D8-99A819D8D75F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPCAgent", "IPCAgent\IPCAgent.csproj", "{A85FD952-001F-4AE5-9781-4FF870F54DE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{1E27F26A-0A53-4033-A9D8-99A819D8D75F}.Debug|Any CPU.Build.0 = Debug
 		{1E27F26A-0A53-4033-A9D8-99A819D8D75F}.Release|Any CPU.ActiveCfg = Release
 		{1E27F26A-0A53-4033-A9D8-99A819D8D75F}.Release|Any CPU.Build.0 = Release
+		{A85FD952-001F-4AE5-9781-4FF870F54DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85FD952-001F-4AE5-9781-4FF870F54DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A85FD952-001F-4AE5-9781-4FF870F54DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A85FD952-001F-4AE5-9781-4FF870F54DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0C80B9A-D501-442E-8C43-FFC10FDBF6ED}
 	EndGlobalSection
 EndGlobal
