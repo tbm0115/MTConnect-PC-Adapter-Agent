@@ -17,6 +17,7 @@ The *MTConnectAgentWindowsService* I have found will not work for most User-base
 Here's a list of currently supported Data Items (Id is enclosed in *()* ): 
 
  - *(avail)* **Availability** (Always AVAILABLE since the PC is on)
+ - *(exec)* **Execution** (AUTOMATIC when user is actively using Keyboard/Mouse, READY after 5mins of inactivity)
  - *(cpuu)* **CPU Usage** (in PERCENT)
  - *(memu)* **Memory Usage** (in MEGABYTES of total currently used)
  - *(cntp)* **Total Process Count**
@@ -34,3 +35,13 @@ Here's a list of currently supported Data Items (Id is enclosed in *()* ):
  - *(kalt, kctl, kcap, knum, kscl, ksht)* **Control Key State** for Alt, Ctrl, CapsLock, NumLock, ScrollLock, and Shift
 
 Most of these items are utilizing **user32.dll** methods, others are taken from the Environment namespace.
+
+# Plugins
+Plugin functionality has been added by use of the **IPCAgentPlugin** interface. These are the current plugin options:
+
+ - **IMenuOption**: Creates a menu option in the Windows form to execute the plugin upon click.
+ - **ITick**: Executes every time the internal "heartbeat" ticks. Essentially every time the application queries the system for the previously mentioned Data Items. This is particularly usefull if attempting to save any data into some form of database.
+
+If you have a plugin available, simply drop it (along with any required fields) in the *Plugins* folder at the root of the application. Please note and remove any *IPCAagent.dll* and *PCAdapter.dll* files to avoid versioning issues.
+
+For the first time running with plugins, start the application then close the application. This should ensure the creation of the *plugins.xml* file at the root. This structured document allows you to toggle which plugins you wish to actually use. Any changes made to this document requires a restart of the application in order to take effect.
