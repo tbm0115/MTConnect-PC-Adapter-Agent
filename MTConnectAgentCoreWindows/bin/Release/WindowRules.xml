@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules>
+  <Rule>
+    <CommonName>Visual Studio</CommonName>
+    <RegexContains><![CDATA[(.*?) - Microsoft Visual Studio]]></RegexContains>
+    <RegexExtract><![CDATA[(?<Extract>.*?) - Microsoft Visual Studio]]></RegexExtract>
+    <RegexEXEPath><![CDATA[(.*?)\\devenv.exe]]></RegexEXEPath>
+    <CanBeEmpty>false</CanBeEmpty>
+  </Rule>
+  <Rule>
+    <CommonName>SQL Server</CommonName>
+    <RegexContains><![CDATA[(.*?) - Microsoft SQL Server Management Studio]]></RegexContains>
+    <RegexExtract><![CDATA[(?<Extract>.*?) - Microsoft SQL Server Management Studio]]></RegexExtract>
+    <RegexEXEPath><![CDATA[(.*?)\\Ssms.exe]]></RegexEXEPath>
+    <CanBeEmpty>false</CanBeEmpty>
+  </Rule>
+  <Rule>
+    <CommonName>Stack Overflow</CommonName>
+    <RegexContains><![CDATA[(.*?) - Stack Overflow(.*?)]]></RegexContains>
+    <RegexExtract><![CDATA[(?<Extract>.*?) - Stack Overflow(.*?)]]></RegexExtract>
+    <RegexEXEPath><![CDATA[(.*?)\\chrome.exe]]></RegexEXEPath>
+    <CanBeEmpty>false</CanBeEmpty>
+  </Rule>
+  <Rule>
+    <CommonName>Outlook Inbox</CommonName>
+    <RegexContains><![CDATA[Inbox - (.*?) - Outlook]]></RegexContains>
+    <RegexExtract><![CDATA[Inbox - (?<Extract>.*?) - Outlook]]></RegexExtract>
+    <RegexEXEPath><![CDATA[(.*?)\\OUTLOOK.exe]]></RegexEXEPath>
+    <CanBeEmpty>false</CanBeEmpty>
+  </Rule>
+  <Rule>
+    <CommonName>Outlook Message</CommonName>
+    <RegexContains><![CDATA[(.*?) - Message(.*)]]></RegexContains>
+    <RegexExtract><![CDATA[(?<Extract>.*?) - Message(.*)]]></RegexExtract>
+    <RegexEXEPath><![CDATA[(.*?)\\OUTLOOK.exe]]></RegexEXEPath>
+    <CanBeEmpty>false</CanBeEmpty>
+  </Rule>
+  <Rule>
+    <CommonName>Notepad++</CommonName>
+    <RegexContains><![CDATA[(.*?) - Notepad\+\+]]></RegexContains>
+    <RegexExtract><![CDATA[(?<Extract>.*?) - Notepad\+\+]]></RegexExtract>
+    <RegexEXEPath><![CDATA[(.*?)\\notepad\+\+.exe]]></RegexEXEPath>
+    <CanBeEmpty>false</CanBeEmpty>
+  </Rule>
+  <Rule>
+    <CommonName>Teams</CommonName>
+    <RegexContains><![CDATA[(.*?) \| Microsoft Teams]]></RegexContains>
+    <RegexExtract><![CDATA[(?<Extract>.*?) \| Microsoft Teams]]></RegexExtract>
+    <RegexEXEPath><![CDATA[(.*?)\\teams.exe]]></RegexEXEPath>
+    <CanBeEmpty>false</CanBeEmpty>
+  </Rule>
+</Rules>

@@ -12,6 +12,7 @@ using MTConnectAgentCore;
 using MTConnect;
 using PCAdapter;
 using System.Timers;
+using System.Configuration;
 
 namespace MTConnectAgentCoreWindows
 {
@@ -37,6 +38,7 @@ namespace MTConnectAgentCoreWindows
 
     public Form1()
     {
+      var appSettings = ConfigurationManager.AppSettings;
       this.State = States.Stopped;
 
 
@@ -67,7 +69,11 @@ namespace MTConnectAgentCoreWindows
       agent = new Agent();
       this.btnStop.Enabled = false;
       // Initialize Timer
-      aTimer = new System.Timers.Timer(50);
+      int sampleRate = 50;
+      if (!Int32.TryParse(appSettings["Rate"], out sampleRate)){
+        sampleRate = 50;
+      }
+      aTimer = new System.Timers.Timer(sampleRate);
       aTimer.Elapsed += new ElapsedEventHandler(aTimer_Elapsed);
       myPC = new PC();
       // Initialize PCAdapter

@@ -92,6 +92,7 @@
       <HintPath>..\..\..\dot_net_sdk-master\PCAdapter\bin\Debug\PCAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
