@@ -1,3 +1,6 @@
+**THIS IS NO LONGER MAINTAINED**
+Please refer to the [PCAdapterV2](https://github.com/tbm0115/PCAdapterV2) repo for a more up-to-date adapter.
+
 # MTConnect-PC-Adapter-Agent
 A MTConnect Adapter and Agent for Windows PCs. MTConnect streams to port 5000 of the PC. More of a proof-of-concept, this Adapter provides information such as cursor position, active window, CPU usage, Memory usage, etc.
 
